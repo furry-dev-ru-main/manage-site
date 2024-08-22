@@ -5,7 +5,7 @@ async function CheckDomain(subdomain) {
 	console.log(subdomain);
 	// check if domain is available
 	let data = await fetch(
-		`https://raw.githubusercontent.com/is-a-dev/register/main/domains/${subdomain}.json`
+		`https://raw.githubusercontent.com/furry-dev-ru-main/register/main/domains/${subdomain}.json`
 	).then((res) => {
 		if (res.status === 404) return true;
 		else return false;
@@ -14,7 +14,7 @@ async function CheckDomain(subdomain) {
 }
 async function CountDomains() {
 	try {
-		const response = await fetch('https://raw-api.is-a.dev');
+		const response = await fetch('https://raw-api.furry-dev.ru');
 		const data = await response.json();
 		const results = countDomainsAndOwners(data);
 		return results;
@@ -62,7 +62,7 @@ async function DeleteDomain(apikey, username, email, domain) {
 			owner: username,
 			repo: 'register',
 			path: 'domains/' + domain + '.json',
-			message: `Delete ${domain}.is-a.dev`,
+			message: `Delete ${domain}.furry-dev.ru`,
 			sha: sha,
 			committer: {
 				name: username,
@@ -75,7 +75,7 @@ async function DeleteDomain(apikey, username, email, domain) {
 	}
 	try {
 		let existingPullRequests = await octokit.pulls.list({
-			owner: 'is-a-dev',
+			owner: 'furry-dev-ru-main',
 			repo: 'register',
 			state: 'open',
 			head: `${username}:main`,
@@ -87,12 +87,12 @@ async function DeleteDomain(apikey, username, email, domain) {
 			return { error: 'A pull request already exists.' };
 		}
 		let pr = await octokit.pulls.create({
-			owner: 'is-a-dev',
+			owner: 'furry-dev-ru-main',
 			repo: 'register',
-			title: `BETA: Delete ${domain.toLowerCase().replace(/\.[^/.]+$/, '')}.is-a.dev`,
+			title: `BETA: Delete ${domain.toLowerCase().replace(/\.[^/.]+$/, '')}.furry-dev.ru`,
 			head: `${username}:main`,
 			base: 'main',
-			body: `Deleted \`${domain.toLowerCase().replace(/\.[^/.]+$/, '')}.is-a.dev\` using the site.`
+			body: `Deleted \`${domain.toLowerCase().replace(/\.[^/.]+$/, '')}.furry-dev.ru\` using the site.`
 		});
 		let PrUrl = pr.data.html_url;
 		return { prurl: PrUrl };
@@ -104,10 +104,10 @@ async function DeleteDomain(apikey, username, email, domain) {
 async function DomainInfo(domain) {
 	const domains = domain;
 	const response = await fetch(
-		`https://raw.githubusercontent.com/is-a-dev/register/main/domains/${domains}.json`,
+		`https://raw.githubusercontent.com/furry-dev-ru-main/register/main/domains/${domains}.json`,
 		{
 			headers: {
-				'User-Agent': 'is-a-dev-bot'
+				'User-Agent': 'furry-dev-ru-main-bot'
 			}
 		}
 	);
@@ -151,8 +151,8 @@ async function EditHosting(subdomain, username, email, apikey) {
             "217.174.245.249",
             "51.161.54.161"
             ],
-        "MX": ["mail.is-a.dev"],
-        "TXT": "v=spf1 mx a:mail.is-a.dev ~all"
+        "MX": ["mail.furry-dev.ru"],
+        "TXT": "v=spf1 mx a:mail.furry-dev.ru ~all"
     }
 }`;
 
@@ -163,7 +163,7 @@ async function EditHosting(subdomain, username, email, apikey) {
 			owner: username,
 			repo: 'register',
 			path: 'domains/' + subdomain + '.json',
-			message: `feat(domain): ${subdomain}.is-a.dev`,
+			message: `feat(domain): ${subdomain}.furry-dev.ru`,
 			content: record,
 			sha: sha,
 			committer: {
@@ -182,7 +182,7 @@ async function EditHosting(subdomain, username, email, apikey) {
 
 	try {
 		let existingPullRequests = await octokit.pulls.list({
-			owner: 'is-a-dev',
+			owner: 'furry-dev-ru-main',
 			repo: 'register',
 			state: 'open',
 			head: `${username}:main`,
@@ -194,12 +194,12 @@ async function EditHosting(subdomain, username, email, apikey) {
 			return { error: 'A pull request for this domain already exists.' };
 		}
 		let pr = await octokit.pulls.create({
-			owner: 'is-a-dev',
+			owner: 'furry-dev-ru-main',
 			repo: 'register',
-			title: `Update ${subdomain.toLowerCase()}.is-a.dev`,
+			title: `Update ${subdomain.toLowerCase()}.furry-dev.ru`,
 			head: `${username}:main`,
 			base: 'main',
-			body: `Updated \`${subdomain.toLowerCase()}.is-a.dev\` using the [dashboard](https://manage.is-a.dev).`
+			body: `Updated \`${subdomain.toLowerCase()}.furry-dev.ru\` using the [dashboard](https://manage.furry-dev.ru).`
 		});
 		let PrUrl = pr.data.html_url;
 		return { prurl: PrUrl };
@@ -259,7 +259,7 @@ async function EditDomain(subdomain, username, email, apikey, records) {
 			owner: username,
 			repo: 'register',
 			path: 'domains/' + subdomain + '.json',
-			message: `feat(domain): ${subdomain}.is-a.dev`,
+			message: `feat(domain): ${subdomain}.furry-dev.ru`,
 			content: record,
 			sha: sha,
 			committer: {
@@ -278,7 +278,7 @@ async function EditDomain(subdomain, username, email, apikey, records) {
 
 	try {
 		let existingPullRequests = await octokit.pulls.list({
-			owner: 'is-a-dev',
+			owner: 'furry-dev-ru-main',
 			repo: 'register',
 			state: 'open',
 			head: `${username}:main`,
@@ -290,12 +290,12 @@ async function EditDomain(subdomain, username, email, apikey, records) {
 			return { error: 'A pull request for this domain already exists.' };
 		}
 		let pr = await octokit.pulls.create({
-			owner: 'is-a-dev',
+			owner: 'furry-dev-ru-main',
 			repo: 'register',
-			title: `BETA: Update ${subdomain.toLowerCase()}.is-a.dev`,
+			title: `BETA: Update ${subdomain.toLowerCase()}.furry-dev.ru`,
 			head: `${username}:main`,
 			base: 'main',
-			body: `Updated \`${subdomain.toLowerCase()}.is-a.dev\` using the [dashboard](https://manage.is-a.dev).`
+			body: `Updated \`${subdomain.toLowerCase()}.furry-dev.ru\` using the [dashboard](https://manage.furry-dev.ru).`
 		});
 		let PrUrl = pr.data.html_url;
 		return { prurl: PrUrl };
@@ -314,7 +314,7 @@ async function forkRepo(token) {
 		});
 
 		forked = await octokit.request('POST /repos/{owner}/{repo}/forks', {
-			owner: 'is-a-dev',
+			owner: 'furry-dev-ru-main',
 			repo: 'register',
 			name: 'register',
 			default_branch_only: true,
@@ -348,7 +348,7 @@ async function ListDomains(username) {
 	// Assuming 'username' is defined and assigned a value
 
 	// Assuming 'fetch' is a valid function that retrieves data from a given URL
-	await fetch('https://raw-api.is-a.dev')
+	await fetch('https://raw-api.furry-dev.ru')
 		.then((response) => response.json())
 		.then(async (data) => {
 			// Code inside the fetch promise handler
@@ -429,7 +429,7 @@ async function RegisterDomain(subdomain, type, username, email, apikey, recordSt
 			owner: username,
 			repo: 'register',
 			path: 'domains/' + subdomain + '.json',
-			message: `feat(domain): ${subdomain}.is-a.dev`,
+			message: `feat(domain): ${subdomain}.furry-dev.ru`,
 			content: record,
 			committer: {
 				name: username,
@@ -447,7 +447,7 @@ async function RegisterDomain(subdomain, type, username, email, apikey, recordSt
 
 	try {
 		let existingPullRequests = await octokit.pulls.list({
-			owner: 'is-a-dev',
+			owner: 'furry-dev-ru-main',
 			repo: 'register',
 			state: 'open',
 			head: `${username}:main`,
@@ -459,12 +459,12 @@ async function RegisterDomain(subdomain, type, username, email, apikey, recordSt
 			return { error: 'A pull request for this domain already exists.' };
 		}
 		let pr = await octokit.pulls.create({
-			owner: 'is-a-dev',
+			owner: 'furry-dev-ru-main',
 			repo: 'register',
-			title: `BETA: Register ${subdomain.toLowerCase()}.is-a.dev`,
+			title: `BETA: Register ${subdomain.toLowerCase()}.furry-dev.ru`,
 			head: `${username}:main`,
 			base: 'main',
-			body: `Added \`${subdomain.toLowerCase()}.is-a.dev\` using the [dashboard](https://manage.is-a.dev).`
+			body: `Added \`${subdomain.toLowerCase()}.furry-dev.ru\` using the [dashboard](https://manage.furry-dev.ru).`
 		});
 		let PrUrl = pr.data.html_url;
 		return { prurl: PrUrl };
@@ -486,8 +486,8 @@ async function RegisterHosting(subdomain, username, email, apikey) {
             "217.174.245.249",
             "51.161.54.161"
             ],
-        "MX": ["mail.is-a.dev"],
-        "TXT": "v=spf1 mx a:mail.is-a.dev ~all"
+        "MX": ["mail.furry-dev.ru"],
+        "TXT": "v=spf1 mx a:mail.furry-dev.ru ~all"
     }
 }`;
 	let record = Buffer.from(data).toString('base64');
@@ -496,7 +496,7 @@ async function RegisterHosting(subdomain, username, email, apikey) {
 			owner: username,
 			repo: 'register',
 			path: 'domains/' + subdomain + '.json',
-			message: `feat(domain): ${subdomain}.is-a.dev`,
+			message: `feat(domain): ${subdomain}.furry-dev.ru`,
 			content: record,
 			committer: {
 				name: username,
@@ -514,7 +514,7 @@ async function RegisterHosting(subdomain, username, email, apikey) {
 
 	try {
 		let existingPullRequests = await octokit.pulls.list({
-			owner: 'is-a-dev',
+			owner: 'furry-dev-ru-main',
 			repo: 'register',
 			state: 'open',
 			head: `${username}:main`,
@@ -526,12 +526,12 @@ async function RegisterHosting(subdomain, username, email, apikey) {
 			return { error: 'A pull request for this domain already exists.' };
 		}
 		let pr = await octokit.pulls.create({
-			owner: 'is-a-dev',
+			owner: 'furry-dev-ru-main',
 			repo: 'register',
-			title: `BETA: Register ${subdomain.toLowerCase()}.is-a.dev`,
+			title: `BETA: Register ${subdomain.toLowerCase()}.furry-dev.ru`,
 			head: `${username}:main`,
 			base: 'main',
-			body: `Added \`${subdomain.toLowerCase()}.is-a.dev\` using the [dashboard](https://manage.is-a.dev).`
+			body: `Added \`${subdomain.toLowerCase()}.furry-dev.ru\` using the [dashboard](https://manage.furry-dev.ru).`
 		});
 		let PrUrl = pr.data.html_url;
 		return { prurl: PrUrl, prnumber: pr.data.number };
@@ -567,7 +567,7 @@ async function getEmail(token) {
 
 async function getHosting(jwt, domain) {
 	try {
-		let response = await fetch(`https://hosts.is-a.dev/api/domain?jwt=${jwt}&domain=${domain}`);
+		let response = await fetch(`https://hosts.furry-dev.ru/api/domain?jwt=${jwt}&domain=${domain}`);
 		if (!response.ok) {
 			throw new Error('Failed to fetch hosting data');
 		}
