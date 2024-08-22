@@ -1,7 +1,7 @@
 import { env } from '$env/dynamic/private';
 
 function isRegistered(subdomain) {
-	return fetch(`${env.PLAUSIBLE_API_PATH}/sites/${subdomain}.is-a.dev`, {
+	return fetch(`${env.PLAUSIBLE_API_PATH}/sites/${subdomain}.furry-dev.ru`, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ async function registerSite(subdomain) {
 			Authorization: `Bearer ${env.PLAUSIBLE_API_KEY}`
 		},
 		body: JSON.stringify({
-			domain: `${subdomain}.is-a.dev`
+			domain: `${subdomain}.furry-dev.ru`
 		})
 	});
 	let data = await response.json();
@@ -43,7 +43,7 @@ async function generateLink(subdomain) {
 			Authorization: `Bearer ${env.PLAUSIBLE_API_KEY}`
 		},
 		body: JSON.stringify({
-			site_id: `${subdomain}.is-a.dev`,
+			site_id: `${subdomain}.furry-dev.ru`,
 			name: 'View stats for owner of this domain'
 		})
 	});
